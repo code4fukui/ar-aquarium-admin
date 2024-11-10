@@ -22,6 +22,7 @@
     <option>歩く</option>
   </select>
 -->
+<span>お魚のなまえ</span><input type="text" id="inp_name">
 <span>大きさ(cm)</span><!--<input id=inp_size>-->
   <select id=sel_size>
     <option>大 (1.0)</option>
@@ -127,6 +128,7 @@ inp_file.oninput = async (e) => {
 };
 btn.onclick = async () => {
   const data = {};
+  data.name = inp_name.value;
   data.file = canvas.toDataURL("image/png")
   const params = ["size", "amp", "freq", "speed"];
   for (const p of params) {
@@ -165,6 +167,10 @@ body {
 }
 input[type="range"] {
   width: calc(85vw - 9em);
+}
+input {
+  font-size: 18px;
+  margin: .3em 0;
 }
 .label {
   display: inline-block;
