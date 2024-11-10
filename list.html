@@ -15,6 +15,7 @@ link.href += "?url=" + url;
 
 const list = await fetchJSON(url);
 console.log(list);
+list.sort((a, b) => -a.dt.localeCompare(b.dt));
 //list.reverse();
 for (const item of list) {
   const div = document.createElement("div");
