@@ -6,6 +6,7 @@
 <div>→ <a id=link2 href=https://code4fukui.github.io/ar-aquarium/>AR水族館へ</a></div>
 
 <div id=imgc>
+  <input id="inp_file" type="file" accept="image/*" x-capture="environment">
   <canvas id="canvas"></canvas><br>
   <span class="label">iterCount</span><input type="range" id="inp_iterCount" min=1 max=30 step=1 value=5><span id="span_iterCount"></span><br>
   <span class="label">contrast</span><input type="range" id="inp_contrast" min=1.0 max=2.0 step=0.01 value=1.2><span id="span_contrast"></span><br>
@@ -13,7 +14,6 @@
   <label><input type="checkbox" id="chk_removeBackground" checked>remove background</label><br>
   <label><input type="checkbox" id="chk_flip">flip</label><br>
 </div>
-<input id="inp_file" type="file" accept="image/*" x-capture="environment">
 <div class=settings>
 <!--
 <span>種類</span>
@@ -55,7 +55,9 @@
   </select>
 <span>お魚のなまえ</span><input type="text" id="inp_name">
 <span>作者のなまえ</span><input type="text" id="inp_author">
-<button id=btn>追加</button>
+<button id=btn>おさかな追加</button><br>
+<br>
+<button id=btnclear>おさかなクリア</button><br>
 
 <script type="module">
 import { loadImageAsync } from "./loadImageAsync.js";
@@ -104,6 +106,11 @@ const drawImage = async (img) => {
   draw(canvas);
   bkimg = img;
 };
+const clearImage = () => {
+  const ctx = canvas.getContext("2d");
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+  bkimg = null;
+};
 
 const update = async () => {
   span_iterCount.textContent = parseInt(inp_iterCount.value)
@@ -147,6 +154,11 @@ btn.onclick = async () => {
   const url2 = url + id + ".json";
   const res = await fetchJSON(url2, data);
   alert(res);
+};
+
+btnclear.onclick = () => {
+  inp_file.value = inp_name.value = inp_author.value = "";
+  clearImage();
 };
 
 canvas.style.backgroundImage = `url(${makeTransparentImage()})`;
