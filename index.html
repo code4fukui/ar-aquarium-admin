@@ -145,6 +145,8 @@ btn.onclick = async () => {
   const res = await fetchJSON(url2, data);
   alert(res);
 };
+
+canvas.style.backgroundImage = `url(${makeTransparentImage()})`;
 </script>
 
 <style>
