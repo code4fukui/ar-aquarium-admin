@@ -22,7 +22,6 @@
     <option>歩く</option>
   </select>
 -->
-<span>お魚のなまえ</span><input type="text" id="inp_name">
 <span>大きさ(cm)</span><!--<input id=inp_size>-->
   <select id=sel_size>
     <option>大 (1.0)</option>
@@ -54,7 +53,8 @@
     <option>とてもゆっくり (0.1)</option>
     <option>停止 (0.0)</option>
   </select>
-<span>
+<span>お魚のなまえ</span><input type="text" id="inp_name">
+<span>作者のなまえ</span><input type="text" id="inp_author">
 <button id=btn>追加</button>
 
 <script type="module">
@@ -131,6 +131,7 @@ inp_file.oninput = async (e) => {
 btn.onclick = async () => {
   const data = {};
   data.name = inp_name.value;
+  data.author = inp_author.value;
   data.file = canvas.toDataURL("image/png")
   const params = ["size", "amp", "freq", "speed"];
   for (const p of params) {
