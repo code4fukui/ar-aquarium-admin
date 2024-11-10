@@ -70,7 +70,7 @@ const params = new URL(document.location).searchParams;
 const url = params.get("url");
 
 link.href += "?url=" + url;
-link2.href += "?url=" + url;
+link2.href += "?url=" + url + "&nfishes=0&dtrefresh=15";
 
 const draw = (canvas) => {
   if (!cv.Mat) return;
