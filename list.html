@@ -1,0 +1,57 @@
+<!DOCTYPE html><html lang="ja"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width"><link rel="icon" href="data:">
+<title>AR水族館管理画面リスト</title>
+</head><body>
+<h1>AR水族館管理画面リスト</h1>
+<div>→ <a id=link href=./>追加画面へ</a></div>
+<main id=main></main>
+
+<script type="module">
+import { fetchJSON } from "https://js.sabae.cc/fetchJSON.js";
+
+const params = new URL(document.location).searchParams;
+const url = params.get("url");
+
+link.href += "?url=" + url;
+
+const list = await fetchJSON(url);
+console.log(list);
+list.reverse();
+for (const item of list) {
+  const div = document.createElement("div");
+  const label = document.createElement("label");
+  const chk = document.createElement("input");
+  chk.type = "checkbox";
+  label.appendChild(chk);
+  chk.checked = item.enabled === undefined || item.enabled == "1";
+  const span = document.createElement("span");
+  span.textContent = "enabled";
+  label.appendChild(span);
+  const img = new Image();
+  img.src = item.file;
+  div.appendChild(img);
+  div.appendChild(label);
+  main.appendChild(div);
+  console.log(item);
+  chk.oninput = async () => {
+    item.enabled = chk.checked ? 1 : 0;
+    const res = await fetchJSON(url + item["@id"], item);
+    if (!res) alert("更新失敗！");
+    //alert(res);
+  };
+}
+</script>
+
+<style>
+body {
+  font-family: sans-serif;
+}
+#main img {
+  display: block;
+  width: 90%;
+  margin: .5em;
+}
+#main div {
+  margin: .5em;
+}
+</style>
+</body></html>
