@@ -1,5 +1,7 @@
 # ar-aquarium-admin
 
+> 日本語のREADMEはこちらです: [README.ja.md](README.ja.md)
+
 An administration interface for the [ar-aquarium](https://github.com/code4fukui/ar-aquarium) project.
 
 ## Demo

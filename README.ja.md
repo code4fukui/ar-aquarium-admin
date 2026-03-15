@@ -6,9 +6,9 @@
 [ar-aquarium-admin](https://code4fukui.github.io/ar-aquarium-admin/)で管理画面を操作できます。
 
 ## 機能
-- 水生生物の追加・削除
+- 水生生物の追加・編集・削除
 - 水生生物の表示設定(種類、サイズ、動きの設定など)
-- 水生生物の一覧表示
+- [json-storage](https://github.com/code4fukui/json-storage/)への水生生物データの保存
 
 ## 必要環境
 - [json-storage](https://github.com/code4fukui/json-storage/)のセットアップ
